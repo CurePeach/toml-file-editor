@@ -1,8 +1,7 @@
 import React from 'react';
 
-import styles from './styles/app.module.css';
-
 import Viewer from './components/Viewer';
+import styles from './styles/app.module.css';
 
 function App() {
   return (
