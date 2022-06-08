@@ -1,7 +1,7 @@
 import React from 'react';
 
-import TextBox from 'components/TextBox';
-
+import Container from './components/Container';
+import TextBox from './components/TextBox';
 import Viewer from './components/Viewer';
 import styles from './styles/app.module.css';
 
@@ -10,8 +10,12 @@ function App() {
 
   return (
     <div className={styles.container}>
-      <TextBox text={toml} setText={setToml} />
-      <Viewer text={toml} />
+      <Container>
+        <TextBox text={toml} setText={setToml} />
+      </Container>
+      <Container>
+        <Viewer text={toml} />
+      </Container>
     </div>
   );
 }

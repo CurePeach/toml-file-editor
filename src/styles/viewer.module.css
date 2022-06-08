@@ -1,4 +1,5 @@
 
 .viewer {
     background-color: beige;
+    white-space: pre-line;
 }
