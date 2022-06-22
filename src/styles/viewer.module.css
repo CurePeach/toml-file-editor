@@ -2,4 +2,5 @@
 .viewer {
     background-color: beige;
     white-space: pre-line;
+    height: 100%;
 }
