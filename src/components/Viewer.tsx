@@ -18,6 +18,8 @@ const convertTomlToText = (parsed: Record<string, unknown>): React.ReactNode[] =
     if (parsed[item] instanceof Array) {
       // nodes.push(<Table name={item} contents={parsed[item]}/>);
       nodes.push("array\n"); 
+    } else if (parsed[item] instanceof Date) {
+      nodes.push("date\n");
     } else if (typeof parsed[item] === "object") {
       console.log("why");
       nodes.push("dictionary\n");
