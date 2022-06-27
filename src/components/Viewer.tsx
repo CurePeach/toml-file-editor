@@ -13,13 +13,15 @@ const convertToNodes = (parsed: Record<string, unknown>): React.ReactNode[] => {
   const nodes: React.ReactNode[] = [];
 
   for (const key of Object.keys(parsed)) {
-    if (isArray(parsed[key])) {
+    const value = parsed[key];
+
+    if (isArray(value)) {
       nodes.push("array\n");
-    } else if (parsed[key] instanceof Date) {
+    } else if (value instanceof Date) {
       nodes.push("date\n");
-    } else if (isDict(parsed[key])) {
+    } else if (isDict(value)) {
       nodes.push("dictionary\n");
-      nodes.push(<Dict name={key} contents={parsed[key]} />)
+      nodes.push(<Dict name={key} contents={value} />)
     } else {
       nodes.push("raw\n");
     }
