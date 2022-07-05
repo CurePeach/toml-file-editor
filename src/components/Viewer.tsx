@@ -2,6 +2,7 @@ import React from 'react';
 import toml from 'toml';
 
 import Dict from './Dict';
+import Table from './Table';
 import styles from '../styles/viewer.module.css';
 import { isArray, isDict } from 'utility/types';
 
@@ -17,6 +18,7 @@ const convertToNodes = (parsed: Record<string, unknown>): React.ReactNode[] => {
 
     if (isArray(value)) {
       nodes.push("array\n");
+      nodes.push(<Table name={key} contents={value}/>)
     } else if (value instanceof Date) {
       nodes.push("date\n");
     } else if (isDict(value)) {

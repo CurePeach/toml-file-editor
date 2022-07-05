@@ -1,4 +1,5 @@
 
+import Table from "./Table";
 import { isArray, isDict } from "utility/types";
 
 type DictProps = {
@@ -14,6 +15,7 @@ const Dict = ({name, contents}: DictProps) => {
 
     if (isArray(value)) {
       nodes.push("array\n");
+      nodes.push(<Table name={key} contents={value}/>)
     } else if (value instanceof Date) {
       nodes.push("date\n");
     } else if (isDict(value)) {
