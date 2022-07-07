@@ -1,17 +1,16 @@
-type TitleRowProps = {
-  keys: string[]
-}
+import styles from '../styles/table.module.css';
 
-const TitleRow = ({keys}: TitleRowProps) => {
-  console.log(keys);
+type TitleRowProps = {
+  keys: string[];
+};
+
+const TitleRow = ({ keys }: TitleRowProps) => {
   const headings: React.ReactNode[] = [];
   for (const key of keys) {
-    headings.push(<th>{key}</th>);
+    headings.push(<th className={styles.titlerow}>{key}</th>);
   }
 
-  return (
-    <tr>{headings}</tr>
-  );
-}
+  return <tr>{headings}</tr>;
+};
 
 export default TitleRow;

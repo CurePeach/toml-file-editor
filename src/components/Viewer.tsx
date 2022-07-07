@@ -1,10 +1,10 @@
 import React from 'react';
 import toml from 'toml';
+import { isArray, isDict } from 'utility/types';
 
+import styles from '../styles/viewer.module.css';
 import Dict from './Dict';
 import Table from './Table';
-import styles from '../styles/viewer.module.css';
-import { isArray, isDict } from 'utility/types';
 
 type ViewerProps = {
   text: string;
@@ -17,20 +17,16 @@ const convertToNodes = (parsed: Record<string, unknown>): React.ReactNode[] => {
     const value = parsed[key];
 
     if (isArray(value)) {
-      nodes.push("array\n");
-      nodes.push(<Table name={key} contents={value}/>)
-    } else if (value instanceof Date) {
-      nodes.push("date\n");
+      nodes.push(<Table name={key} contents={value} />);
     } else if (isDict(value)) {
-      nodes.push("dictionary\n");
-      nodes.push(<Dict name={key} contents={value} />)
+      nodes.push(<Dict name={key} contents={value} />);
     } else {
-      nodes.push("raw\n");
+      nodes.push('raw\n');
     }
   }
 
   return nodes;
-}
+};
 
 const Viewer = ({ text }: ViewerProps) => {
   try {

@@ -1,6 +1,10 @@
 
 .viewer {
-    background-color: beige;
-    white-space: pre-line;
-    height: 100%;
+  background-color: #eee;
+  white-space: pre-line;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: scroll;
+  padding: 1%;
+  border-radius: 1%;
 }

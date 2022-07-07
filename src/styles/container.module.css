@@ -1,8 +1,8 @@
 
 .container {
-  width: 70vh;
+  width: 45%;
   height: 90vh;
-  padding-top: 2%;
+  padding: 1%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;

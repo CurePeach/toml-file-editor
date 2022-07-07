@@ -1,8 +1,10 @@
 
 .textbox {
   border: 0px;
-  background-color: darkseagreen;
+  background-color: #eee;
   width: -webkit-fill-available;
   font-family: inherit;
   height: 100%;
+  padding: 1%;
+  border-radius: 1%;
 }

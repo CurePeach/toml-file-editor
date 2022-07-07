@@ -1,15 +1,15 @@
+import styles from '../styles/table.module.css';
 
 type RowProps = {
-  item: Record<string, unknown>
-}
+  item: Record<string, unknown>;
+};
 
-const Row = ({item}: RowProps) => {
-  console.log(item);
+const Row = ({ item }: RowProps) => {
   const values: React.ReactNode[] = [];
   for (const key of Object.keys(item)) {
-    values.push(<td>{String(item[key])}</td>)
+    values.push(<td className={styles.row}>{String(item[key])}</td>);
   }
-  return (<tr>{values}</tr>);
-}
+  return <tr>{values}</tr>;
+};
 
 export default Row;

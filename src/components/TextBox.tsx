@@ -19,6 +19,7 @@ const TextBox = ({ text, setText }: TextBoxProps) => {
       onChange={(event) => handleChange(event)}
       value={text}
       className={styles.textbox}
+      placeholder="Start typing TOML here..."
     />
   );
 };

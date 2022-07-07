@@ -1,31 +1,36 @@
+import { isArray, isDict } from 'utility/types';
 
-import Table from "./Table";
-import { isArray, isDict } from "utility/types";
+import styles from '../styles/dict.module.css';
+import Field from './Field';
+import Table from './Table';
+import Title from './Title';
 
 type DictProps = {
-  name: string,
-  contents: Record<string, unknown>
+  name: string;
+  contents: Record<string, unknown>;
 };
 
-const Dict = ({name, contents}: DictProps) => {
-  const nodes: React.ReactNode[] = [<div>{name}</div>];
+const Dict = ({ name, contents }: DictProps) => {
+  const nodes: React.ReactNode[] = [<Title title={name} />];
 
-  for (const key of Object.keys(contents)) {
-    const value = contents[key];
-
+  for (const [key, value] of Object.entries(contents)) {
     if (isArray(value)) {
-      nodes.push("array\n");
-      nodes.push(<Table name={key} contents={value}/>)
-    } else if (value instanceof Date) {
-      nodes.push("date\n");
+      nodes.push(
+        <div className={styles.child}>
+          <Table name={key} contents={value} />
+        </div>
+      );
     } else if (isDict(value)) {
-      nodes.push("dictionary\n");
-      nodes.push(<Dict name={key} contents={value} />)
+      nodes.push(
+        <div className={styles.child}>
+          <Dict name={key} contents={value} />
+        </div>
+      );
     } else {
-      nodes.push(`${key} = ${value}\n`);
+      nodes.push(<Field name={key} value={String(value)} />);
     }
   }
-  return (<div>{nodes}</div>);
+  return <div>{nodes}</div>;
 };
 
 export default Dict;
