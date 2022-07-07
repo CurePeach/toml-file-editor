@@ -4,6 +4,7 @@ import { isArray, isDict } from 'utility/types';
 
 import styles from '../styles/viewer.module.css';
 import Dict from './Dict';
+import Field from './Field';
 import Table from './Table';
 
 type ViewerProps = {
@@ -21,7 +22,7 @@ const convertToNodes = (parsed: Record<string, unknown>): React.ReactNode[] => {
     } else if (isDict(value)) {
       nodes.push(<Dict name={key} contents={value} />);
     } else {
-      nodes.push('raw\n');
+      nodes.push(<Field name={key} value={String(value)} />);
     }
   }
 
