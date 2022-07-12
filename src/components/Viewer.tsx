@@ -1,5 +1,4 @@
 import React from 'react';
-import toml from 'toml';
 import { isArray, isDict } from 'utility/types';
 
 import styles from '../styles/viewer.module.css';
@@ -8,15 +7,21 @@ import Field from './Field';
 import Table from './Table';
 
 type ViewerProps = {
-  text: string;
+  dict: Record<string, unknown>;
+  setDict: React.Dispatch<React.SetStateAction<Record<string, unknown>>>;
+  error: Error | null;
 };
 
-const convertToNodes = (parsed: Record<string, unknown>): React.ReactNode[] => {
-  const nodes: React.ReactNode[] = [];
+// eslint-disable-next-line
+const Viewer = ({ dict, setDict, error }: ViewerProps) => {
+  if (error != null) {
+    return <div className={styles.viewer}>{error.message}</div>
+  }
 
-  for (const key of Object.keys(parsed)) {
-    const value = parsed[key];
+  const nodes: React.ReactNode[] = []; 
 
+  for (const key of Object.keys(dict)) {
+    const value = dict[key];
     if (isArray(value)) {
       nodes.push(<Table name={key} contents={value} />);
     } else if (isDict(value)) {
@@ -26,21 +31,7 @@ const convertToNodes = (parsed: Record<string, unknown>): React.ReactNode[] => {
     }
   }
 
-  return nodes;
-};
-
-const Viewer = ({ text }: ViewerProps) => {
-  try {
-    const parsed = toml.parse(text);
-    const tomlNodes = convertToNodes(parsed);
-    return <div className={styles.viewer}>{tomlNodes}</div>;
-  } catch (e) {
-    if (e instanceof Error) {
-      return <div className={styles.viewer}>{e.message}</div>;
-    } else {
-      return <div className={styles.viewer}>{text}</div>;
-    }
-  }
+    return <div className={styles.viewer}>{nodes}</div>
 };
 
 export default Viewer;
