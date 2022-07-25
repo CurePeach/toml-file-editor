@@ -12,7 +12,9 @@
 }
 
 .row {
+  padding-left: 1vw;
+  padding-right: 1vw;
+  word-wrap: break-word;
   text-align: left;
   border: 1px solid black;
-  padding: 0.5%;
 }

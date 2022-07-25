@@ -1,4 +1,4 @@
-import { isDict } from 'utility/types';
+import { isDict, isArray } from 'utility/types';
 
 import styles from '../styles/table.module.css';
 import Row from './Row';
@@ -12,15 +12,23 @@ type TableProps = {
 
 const Table = ({ name, contents }: TableProps) => {
   const rows: React.ReactNode[] = [];
-  let titleRequired = false;
+  let titleRowRequired = false;
   const keys: Set<string> = new Set();
   for (const item of contents) {
     if (isDict(item)) {
-      titleRequired = true;
+      titleRowRequired = true;
       for (const key of Object.keys(item)) {
         keys.add(key);
       }
       rows.push(<Row item={item} />);
+    } else if (isArray(item)) {
+      const thisRow: React.ReactNode[] = [];
+      for (const col of item) {
+        thisRow.push(
+          <td className={styles.row}>{String(col)}</td>
+        );
+      }
+      rows.push(<tr>{thisRow}</tr>);
     } else {
       rows.push(
         <tr>
@@ -30,7 +38,7 @@ const Table = ({ name, contents }: TableProps) => {
     }
   }
 
-  if (titleRequired) {
+  if (titleRowRequired) {
     rows.unshift(<TitleRow keys={Array.from(keys)} />);
   }
 
