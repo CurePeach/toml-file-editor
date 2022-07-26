@@ -10,7 +10,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(buildPath, 'index.html'));
 });
 
-const port = process.env.port || 9000;
+const port = process.env.PORT || 9000;
 app.listen(port, () => {
   console.log(`Server is up on port ${port}!`);
 });
