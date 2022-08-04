@@ -1,6 +1,7 @@
+@import './colors.css';
 
 .viewer {
-  background-color: #eee;
+  background-color: var(--ivory);
   white-space: pre-line;
   height: 100%;
   overflow-y: scroll;
