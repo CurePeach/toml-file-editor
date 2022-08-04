@@ -1,7 +1,8 @@
+@import './colors.css';
 
 .textbox {
   border: 0px;
-  background-color: #eee;
+  background-color: var(--ivory);
   width: -webkit-fill-available;
   font-family: inherit;
   height: 100%;
