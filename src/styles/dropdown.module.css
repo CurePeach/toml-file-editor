@@ -1,0 +1,32 @@
+@import './colors.css';
+
+.wrapper {
+  position: relative;
+  background-color: var(--pewter);
+  color: var(--ivory);
+  border-radius: 5px;
+  padding: 1%;
+  width: 7.5%;
+}
+
+.button {
+  display: flex;
+  justify-content: space-between;
+}
+
+.list {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  background-color: var(--pewter);
+  color: var(--ivory);
+  border-radius: 5px;
+  width: 100%;
+}
+
+.listitem {
+  text-align: center;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  border-top: 1px solid var(--ivory);
+}

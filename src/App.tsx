@@ -1,6 +1,8 @@
 import React from 'react';
 import toml from 'toml';
 
+import Dropdown from 'components/Dropdown';
+
 import Container from './components/Container';
 import TextBox from './components/TextBox';
 import Viewer from './components/Viewer';
@@ -23,13 +25,18 @@ function App() {
   }, [text]);
 
   return (
-    <div className={styles.container}>
-      <Container>
-        <TextBox text={text} setText={setText} />
-      </Container>
-      <Container>
-        <Viewer dict={dict} setDict={setDict} error={error}/>
-      </Container>
+    <div>
+      <div className={styles.toolbar}>
+        <Dropdown title={'Add'} list={['Field', 'Dict', 'Array']} />
+      </div>
+      <div className={styles.container}>
+        <Container>
+          <TextBox text={text} setText={setText} />
+        </Container>
+        <Container>
+          <Viewer dict={dict} setDict={setDict} error={error} />
+        </Container>
+      </div>
     </div>
   );
 }
