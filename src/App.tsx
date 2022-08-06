@@ -1,9 +1,9 @@
 import React from 'react';
 import toml from 'toml';
 
-import Dropdown from 'components/Dropdown';
-
+import Button from './components/Button';
 import Container from './components/Container';
+import Dropdown from './components/Dropdown';
 import TextBox from './components/TextBox';
 import Viewer from './components/Viewer';
 import styles from './styles/app.module.css';
@@ -27,7 +27,8 @@ function App() {
   return (
     <div>
       <div className={styles.toolbar}>
-        <Dropdown title={'Add'} list={['Field', 'Dict', 'Array']} />
+        <Button title={'Add New Field'} />
+        <Dropdown title={'Add New Field'} list={[]} />
       </div>
       <div className={styles.container}>
         <Container>
