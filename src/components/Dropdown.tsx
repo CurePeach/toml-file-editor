@@ -26,8 +26,8 @@ const Dropdown = ({ title, list }: DropdownProps) => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.button} onMouseDown={handleMouseDown}>
-        {title}
+      <div onMouseDown={handleMouseDown}>
+        {title}{' '}
         {isOpen ? (
           <FontAwesomeIcon icon={solid('angle-up')} />
         ) : (
