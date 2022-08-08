@@ -1,5 +1,6 @@
 import React from 'react';
 import toml from 'toml';
+import tomlify from 'tomlify-j0.4';
 
 import Button from './components/Button';
 import { ButtonType } from './components/Button';
@@ -23,6 +24,10 @@ function App() {
       }
     }
   }, [text]);
+
+  React.useEffect(() => {
+    setText(tomlify.toToml(dict, { space: 4 }));
+  }, [dict]);
 
   const addNode = (node: Record<string, string>) => {
     const sample = Object.assign({}, dict, node);
