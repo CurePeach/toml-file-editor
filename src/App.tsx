@@ -2,8 +2,8 @@ import React from 'react';
 import toml from 'toml';
 
 import Button from './components/Button';
+import { ButtonType } from './components/Button';
 import Container from './components/Container';
-import Dropdown from './components/Dropdown';
 import TextBox from './components/TextBox';
 import Viewer from './components/Viewer';
 import styles from './styles/app.module.css';
@@ -24,11 +24,19 @@ function App() {
     }
   }, [text]);
 
+  const addNode = (node: Record<string, string>) => {
+    const sample = Object.assign({}, dict, node);
+    setDict(sample);
+  };
+
   return (
     <div>
       <div className={styles.toolbar}>
-        <Button title={'Add New Field'} />
-        <Dropdown title={'Add New Field'} list={[]} />
+        <Button
+          title={'Add New Field'}
+          type={ButtonType.Field}
+          tellParent={addNode}
+        />
       </div>
       <div className={styles.container}>
         <Container>
