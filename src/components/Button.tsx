@@ -1,32 +1,30 @@
 import React from 'react';
 
 import styles from '../styles/button.module.css';
-
-export enum ButtonType {
-  Field,
-  Array,
-  Dict,
-  Normal,
-}
+import { ActionType, DataType } from '../utility/types';
 
 type ButtonProps = {
   title: string;
-  type: ButtonType;
+  type: ActionType;
+  onClick: () => void;
+  edit: DataType;
   tellParent: (node: Record<string, string>) => void;
 };
 
-const Button = ({ title, type, tellParent }: ButtonProps) => {
+const Button = ({ title, type, onClick, edit, tellParent }: ButtonProps) => {
   const [isOpen, setOpen] = React.useState(false);
   const [key, setKey] = React.useState('');
   const [value, setValue] = React.useState('');
   const [newNode, setNewNode] = React.useState({});
 
-  React.useEffect(() => {
-    tellParent(newNode);
-  }, [newNode]);
+  if (type != ActionType.Normal) {
+    React.useEffect(() => {
+      tellParent(newNode);
+    }, [newNode]);
+  }
 
   let popup: React.ReactNode;
-  if (type == ButtonType.Field) {
+  if (edit == DataType.Field) {
     const handleSubmit = (event: { preventDefault: () => void }) => {
       event.preventDefault();
 
@@ -61,15 +59,15 @@ const Button = ({ title, type, tellParent }: ButtonProps) => {
         </form>
       </div>
     );
-  } else if (type == ButtonType.Array) {
+  } else if (edit == DataType.Array) {
     popup = <div className={styles.popup}>Is an array</div>;
-  } else if (type == ButtonType.Dict) {
+  } else if (edit == DataType.Dict) {
     popup = <div className={styles.popup}>Is a dict</div>;
   }
 
   const handleMouseDown = () => {
-    if (type == ButtonType.Normal) {
-      tellParent({});
+    if (type == ActionType.Normal) {
+      onClick();
     } else {
       setOpen(!isOpen);
     }
@@ -80,7 +78,7 @@ const Button = ({ title, type, tellParent }: ButtonProps) => {
       <div className={styles.button} onMouseDown={handleMouseDown}>
         {title}
       </div>
-      {type != ButtonType.Normal && isOpen && popup}
+      {type != ActionType.Normal && isOpen && popup}
     </div>
   );
 };

@@ -1,3 +1,17 @@
+export enum DataType {
+  Field,
+  Array,
+  Dict,
+  None,
+}
+
+export enum ActionType {
+  Add,
+  Delete,
+  Edit,
+  Normal,
+}
+
 export const isArray = (
   toDetermine: unknown
 ): toDetermine is Array<unknown> => {

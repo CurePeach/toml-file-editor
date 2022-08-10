@@ -3,11 +3,11 @@ import toml from 'toml';
 import tomlify from 'tomlify-j0.4';
 
 import Button from './components/Button';
-import { ButtonType } from './components/Button';
 import Container from './components/Container';
 import TextBox from './components/TextBox';
 import Viewer from './components/Viewer';
 import styles from './styles/app.module.css';
+import { ActionType, DataType } from './utility/types';
 
 function App() {
   const [text, setText] = React.useState('');
@@ -52,19 +52,31 @@ function App() {
         {textMode ? (
           <Button
             title={'Switch To Graphical Editor'}
-            type={ButtonType.Normal}
-            tellParent={toggleEditor}
+            type={ActionType.Normal}
+            onClick={toggleEditor}
+            edit={DataType.None}
+            tellParent={() => {
+              return;
+            }}
           />
         ) : (
           <Button
             title={'Switch To Text Editor'}
-            type={ButtonType.Normal}
-            tellParent={toggleEditor}
+            type={ActionType.Normal}
+            onClick={toggleEditor}
+            edit={DataType.None}
+            tellParent={() => {
+              return;
+            }}
           />
         )}
         <Button
           title={'Add New Field'}
-          type={ButtonType.Field}
+          type={ActionType.Add}
+          onClick={() => {
+            return;
+          }}
+          edit={DataType.Field}
           tellParent={addNode}
         />
       </div>
