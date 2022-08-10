@@ -1,6 +1,9 @@
 import React from 'react';
 import toml from 'toml';
+import tomlify from 'tomlify-j0.4';
 
+import Button from './components/Button';
+import { ButtonType } from './components/Button';
 import Container from './components/Container';
 import TextBox from './components/TextBox';
 import Viewer from './components/Viewer';
@@ -10,6 +13,7 @@ function App() {
   const [text, setText] = React.useState('');
   const [dict, setDict] = React.useState({});
   const [error, setError] = React.useState<Error | null>(null);
+  const [textMode, setTextMode] = React.useState(false);
 
   React.useEffect(() => {
     try {
@@ -22,14 +26,56 @@ function App() {
     }
   }, [text]);
 
+  React.useEffect(() => {
+    if (!textMode) {
+      setText(tomlify.toToml(dict, { space: 4 }));
+    }
+  }, [dict, textMode]);
+
+  const addNode = (node: Record<string, string>) => {
+    if (!textMode) {
+      const sample = Object.assign({}, dict, node);
+      setDict(sample);
+    } else {
+      alert('Please turn on the graphical editor to use this feature');
+    }
+  };
+
+  const toggleEditor = () => {
+    console.log(textMode);
+    setTextMode(!textMode);
+  };
+
   return (
-    <div className={styles.container}>
-      <Container>
-        <TextBox text={text} setText={setText} />
-      </Container>
-      <Container>
-        <Viewer dict={dict} setDict={setDict} error={error}/>
-      </Container>
+    <div>
+      <div className={styles.toolbar}>
+        {textMode ? (
+          <Button
+            title={'Switch To Graphical Editor'}
+            type={ButtonType.Normal}
+            tellParent={toggleEditor}
+          />
+        ) : (
+          <Button
+            title={'Switch To Text Editor'}
+            type={ButtonType.Normal}
+            tellParent={toggleEditor}
+          />
+        )}
+        <Button
+          title={'Add New Field'}
+          type={ButtonType.Field}
+          tellParent={addNode}
+        />
+      </div>
+      <div className={styles.container}>
+        <Container>
+          <TextBox text={text} setText={setText} />
+        </Container>
+        <Container>
+          <Viewer dict={dict} setDict={setDict} error={error} />
+        </Container>
+      </div>
     </div>
   );
 }
