@@ -7,11 +7,11 @@ import Container from './components/Container';
 import TextBox from './components/TextBox';
 import Viewer from './components/Viewer';
 import styles from './styles/app.module.css';
-import { ActionType, DataType } from './utility/types';
+import { ActionType, DataType, emptyFunction } from './utility/types';
 
 function App() {
   const [text, setText] = React.useState('');
-  const [dict, setDict] = React.useState({});
+  const [dict, setDict] = React.useState<Record<string, unknown>>({});
   const [error, setError] = React.useState<Error | null>(null);
   const [textMode, setTextMode] = React.useState(false);
 
@@ -32,18 +32,29 @@ function App() {
     }
   }, [dict, textMode]);
 
+  const toggleEditor = () => {
+    console.log(textMode);
+    setTextMode(!textMode);
+  };
+
   const addNode = (node: Record<string, string>) => {
     if (!textMode) {
-      const sample = Object.assign({}, dict, node);
+      const sample = { ...dict, ...node };
       setDict(sample);
     } else {
       alert('Please turn on the graphical editor to use this feature');
     }
   };
 
-  const toggleEditor = () => {
-    console.log(textMode);
-    setTextMode(!textMode);
+  const deleteNode = (node: Record<string, string>) => {
+    if (!textMode) {
+      const sample = { ...dict };
+      const key = node.key;
+      delete sample[key];
+      setDict(sample);
+    } else {
+      alert('Please turn on the graphical editor to use this feature');
+    }
   };
 
   return (
@@ -55,9 +66,7 @@ function App() {
             type={ActionType.Normal}
             onClick={toggleEditor}
             edit={DataType.None}
-            tellParent={() => {
-              return;
-            }}
+            tellParent={emptyFunction}
           />
         ) : (
           <Button
@@ -65,19 +74,22 @@ function App() {
             type={ActionType.Normal}
             onClick={toggleEditor}
             edit={DataType.None}
-            tellParent={() => {
-              return;
-            }}
+            tellParent={emptyFunction}
           />
         )}
         <Button
           title={'Add New Field'}
           type={ActionType.Add}
-          onClick={() => {
-            return;
-          }}
+          onClick={emptyFunction}
           edit={DataType.Field}
           tellParent={addNode}
+        />
+        <Button
+          title={'Delete A Field'}
+          type={ActionType.Delete}
+          onClick={emptyFunction}
+          edit={DataType.Field}
+          tellParent={deleteNode}
         />
       </div>
       <div className={styles.container}>

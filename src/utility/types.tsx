@@ -33,3 +33,7 @@ export const isDict = (
   }
   return false;
 };
+
+export const emptyFunction = () => {
+  return;
+};

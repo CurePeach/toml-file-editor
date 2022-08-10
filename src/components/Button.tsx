@@ -24,7 +24,7 @@ const Button = ({ title, type, onClick, edit, tellParent }: ButtonProps) => {
   }
 
   let popup: React.ReactNode;
-  if (edit == DataType.Field) {
+  if (type == ActionType.Add && edit == DataType.Field) {
     const handleSubmit = (event: { preventDefault: () => void }) => {
       event.preventDefault();
 
@@ -54,6 +54,31 @@ const Button = ({ title, type, onClick, edit, tellParent }: ButtonProps) => {
             value={value}
             required
             onChange={(event) => setValue(event.target.value)}
+          />
+          <input type="submit" className={styles.submit} />
+        </form>
+      </div>
+    );
+  } else if (type == ActionType.Delete && edit == DataType.Field) {
+    const handleSubmit = (event: { preventDefault: () => void }) => {
+      event.preventDefault();
+
+      const newPair: Record<string, string> = { key: key };
+      setNewNode(newPair);
+
+      setOpen(false);
+      setKey('');
+    };
+
+    popup = (
+      <div className={styles.popup}>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <input
+            name="key"
+            placeholder="key"
+            value={key}
+            required
+            onChange={(event) => setKey(event.target.value)}
           />
           <input type="submit" className={styles.submit} />
         </form>
