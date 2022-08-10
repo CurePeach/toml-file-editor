@@ -6,6 +6,7 @@ export enum ButtonType {
   Field,
   Array,
   Dict,
+  Normal,
 }
 
 type ButtonProps = {
@@ -67,7 +68,11 @@ const Button = ({ title, type, tellParent }: ButtonProps) => {
   }
 
   const handleMouseDown = () => {
-    setOpen(!isOpen);
+    if (type == ButtonType.Normal) {
+      tellParent({});
+    } else {
+      setOpen(!isOpen);
+    }
   };
 
   return (
@@ -75,7 +80,7 @@ const Button = ({ title, type, tellParent }: ButtonProps) => {
       <div className={styles.button} onMouseDown={handleMouseDown}>
         {title}
       </div>
-      {isOpen && popup}
+      {type != ButtonType.Normal && isOpen && popup}
     </div>
   );
 };

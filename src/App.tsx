@@ -13,6 +13,7 @@ function App() {
   const [text, setText] = React.useState('');
   const [dict, setDict] = React.useState({});
   const [error, setError] = React.useState<Error | null>(null);
+  const [textMode, setTextMode] = React.useState(false);
 
   React.useEffect(() => {
     try {
@@ -26,17 +27,41 @@ function App() {
   }, [text]);
 
   React.useEffect(() => {
-    setText(tomlify.toToml(dict, { space: 4 }));
-  }, [dict]);
+    if (!textMode) {
+      setText(tomlify.toToml(dict, { space: 4 }));
+    }
+  }, [dict, textMode]);
 
   const addNode = (node: Record<string, string>) => {
-    const sample = Object.assign({}, dict, node);
-    setDict(sample);
+    if (!textMode) {
+      const sample = Object.assign({}, dict, node);
+      setDict(sample);
+    } else {
+      alert('Please turn on the graphical editor to use this feature');
+    }
+  };
+
+  const toggleEditor = () => {
+    console.log(textMode);
+    setTextMode(!textMode);
   };
 
   return (
     <div>
       <div className={styles.toolbar}>
+        {textMode ? (
+          <Button
+            title={'Switch To Graphical Editor'}
+            type={ButtonType.Normal}
+            tellParent={toggleEditor}
+          />
+        ) : (
+          <Button
+            title={'Switch To Text Editor'}
+            type={ButtonType.Normal}
+            tellParent={toggleEditor}
+          />
+        )}
         <Button
           title={'Add New Field'}
           type={ButtonType.Field}
