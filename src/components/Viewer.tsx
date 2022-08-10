@@ -15,10 +15,10 @@ type ViewerProps = {
 // eslint-disable-next-line
 const Viewer = ({ dict, setDict, error }: ViewerProps) => {
   if (error != null) {
-    return <div className={styles.viewer}>{error.message}</div>
+    return <div className={styles.viewer}>{error.message}</div>;
   }
 
-  const nodes: React.ReactNode[] = []; 
+  const nodes: React.ReactNode[] = [];
 
   for (const key of Object.keys(dict)) {
     const value = dict[key];
@@ -31,7 +31,7 @@ const Viewer = ({ dict, setDict, error }: ViewerProps) => {
     }
   }
 
-    return <div className={styles.viewer}>{nodes}</div>
+  return <div className={styles.viewer}>{nodes}</div>;
 };
 
 export default Viewer;

@@ -1,4 +1,4 @@
-import { isDict, isArray } from 'utility/types';
+import { isArray, isDict } from 'utility/types';
 
 import styles from '../styles/table.module.css';
 import Row from './Row';
@@ -24,9 +24,7 @@ const Table = ({ name, contents }: TableProps) => {
     } else if (isArray(item)) {
       const thisRow: React.ReactNode[] = [];
       for (const col of item) {
-        thisRow.push(
-          <td className={styles.row}>{String(col)}</td>
-        );
+        thisRow.push(<td className={styles.row}>{String(col)}</td>);
       }
       rows.push(<tr>{thisRow}</tr>);
     } else {
