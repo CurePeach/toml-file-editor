@@ -1,8 +1,10 @@
 import React from 'react';
 
-import styles from '../styles/button.module.css';
-import { ActionType, DataType } from '../utility/types';
-import PopUp from './PopUp';
+import PopUp from 'components/PopUp';
+
+import { ActionType, DataType } from 'utility/types';
+
+import styles from 'styles/button.module.css';
 
 type ButtonProps = {
   title: string;

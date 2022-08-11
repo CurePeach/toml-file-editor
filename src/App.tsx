@@ -2,12 +2,14 @@ import React from 'react';
 import toml from 'toml';
 import tomlify from 'tomlify-j0.4';
 
-import Button from './components/Button';
-import Container from './components/Container';
-import TextBox from './components/TextBox';
-import Viewer from './components/Viewer';
-import styles from './styles/app.module.css';
-import { ActionType, DataType, emptyFunction } from './utility/types';
+import Button from 'components/Button';
+import Container from 'components/Container';
+import TextBox from 'components/TextBox';
+import Viewer from 'components/Viewer';
+
+import { ActionType, DataType, emptyFunction } from 'utility/types';
+
+import styles from 'styles/app.module.css';
 
 function App() {
   const [text, setText] = React.useState('');

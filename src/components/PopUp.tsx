@@ -1,7 +1,8 @@
 import React from 'react';
 
-import styles from '../styles/button.module.css';
-import { ActionType, DataType } from '../utility/types';
+import { ActionType, DataType } from 'utility/types';
+
+import styles from 'styles/button.module.css';
 
 type PopUpProps = {
   type: ActionType;

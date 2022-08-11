@@ -1,9 +1,10 @@
+import Row from 'components/Row';
+import Title from 'components/Title';
+import TitleRow from 'components/TitleRow';
+
 import { isArray, isDict } from 'utility/types';
 
-import styles from '../styles/table.module.css';
-import Row from './Row';
-import Title from './Title';
-import TitleRow from './TitleRow';
+import styles from 'styles/table.module.css';
 
 type TableProps = {
   name: string;

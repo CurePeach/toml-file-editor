@@ -1,10 +1,12 @@
 import React from 'react';
+
+import Dict from 'components/Dict';
+import Field from 'components/Field';
+import Table from 'components/Table';
+
 import { isArray, isDict } from 'utility/types';
 
-import styles from '../styles/viewer.module.css';
-import Dict from './Dict';
-import Field from './Field';
-import Table from './Table';
+import styles from 'styles/viewer.module.css';
 
 type ViewerProps = {
   dict: Record<string, unknown>;

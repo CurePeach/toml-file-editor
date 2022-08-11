@@ -1,9 +1,10 @@
+import Field from 'components/Field';
+import Table from 'components/Table';
+import Title from 'components/Title';
+
 import { isArray, isDict } from 'utility/types';
 
-import styles from '../styles/dict.module.css';
-import Field from './Field';
-import Table from './Table';
-import Title from './Title';
+import styles from 'styles/dict.module.css';
 
 type DictProps = {
   name: string;
