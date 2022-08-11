@@ -1,10 +1,10 @@
 @import './colors.css';
 
 .textbox {
+  font-family: 'Consolas', 'Courier New', Courier, monospace;
   border: 0px;
   background-color: var(--ivory);
   width: -webkit-fill-available;
-  font-family: inherit;
   height: 100%;
   padding: 1%;
   border-radius: 1%;
