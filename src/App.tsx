@@ -40,8 +40,6 @@ function App() {
     if (!textMode) {
       const sample = { ...dict, ...node };
       setDict(sample);
-    } else {
-      alert('Please turn on the graphical editor to use this feature');
     }
   };
 
@@ -51,8 +49,6 @@ function App() {
       const key = node.key;
       delete sample[key];
       setDict(sample);
-    } else {
-      alert('Please turn on the graphical editor to use this feature');
     }
   };
 
@@ -82,7 +78,9 @@ function App() {
           <Button
             title={'Upload TOML'}
             type={ActionType.Normal}
-            onClick={() => console.log('hi')}
+            onClick={() => {
+              alert('Not implemented yet :(');
+            }}
             edit={DataType.None}
             tellParent={emptyFunction}
           />
