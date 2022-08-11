@@ -1,3 +1,17 @@
+export enum DataType {
+  Field,
+  Array,
+  Dict,
+  None,
+}
+
+export enum ActionType {
+  Add,
+  Delete,
+  Edit,
+  Normal,
+}
+
 export const isArray = (
   toDetermine: unknown
 ): toDetermine is Array<unknown> => {
@@ -18,4 +32,8 @@ export const isDict = (
     return true;
   }
   return false;
+};
+
+export const emptyFunction = () => {
+  return;
 };
