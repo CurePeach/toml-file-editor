@@ -12,6 +12,7 @@ type TableProps = {
 
 const Table = ({ name, contents }: TableProps) => {
   const rows: React.ReactNode[] = [];
+  let count = 0;
   let titleRowRequired = false;
   const keys: Set<string> = new Set();
   for (const item of contents) {
@@ -20,20 +21,21 @@ const Table = ({ name, contents }: TableProps) => {
       for (const key of Object.keys(item)) {
         keys.add(key);
       }
-      rows.push(<Row item={item} />);
+      rows.push(<Row key={count} item={item} />);
     } else if (isArray(item)) {
       const thisRow: React.ReactNode[] = [];
       for (const col of item) {
         thisRow.push(<td className={styles.row}>{String(col)}</td>);
       }
-      rows.push(<tr>{thisRow}</tr>);
+      rows.push(<tr key={count}>{thisRow}</tr>);
     } else {
       rows.push(
-        <tr>
+        <tr key={count}>
           <td className={styles.row}>{String(item)}</td>
         </tr>
       );
     }
+    count += 1;
   }
 
   if (titleRowRequired) {

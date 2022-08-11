@@ -16,18 +16,18 @@ const Dict = ({ name, contents }: DictProps) => {
   for (const [key, value] of Object.entries(contents)) {
     if (isArray(value)) {
       nodes.push(
-        <div className={styles.child}>
+        <div key={key} className={styles.child}>
           <Table name={key} contents={value} />
         </div>
       );
     } else if (isDict(value)) {
       nodes.push(
-        <div className={styles.child}>
+        <div key={key} className={styles.child}>
           <Dict name={key} contents={value} />
         </div>
       );
     } else {
-      nodes.push(<Field name={key} value={String(value)} />);
+      nodes.push(<Field key={key} name={key} value={String(value)} />);
     }
   }
   return <div>{nodes}</div>;
