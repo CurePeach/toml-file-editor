@@ -77,22 +77,34 @@ function App() {
           />
         )}
       </div>
-      <div className={styles.toolbar}>
-        <Button
-          title={'Add New Field'}
-          type={ActionType.Add}
-          onClick={emptyFunction}
-          edit={DataType.Field}
-          tellParent={addNode}
-        />
-        <Button
-          title={'Delete A Field'}
-          type={ActionType.Delete}
-          onClick={emptyFunction}
-          edit={DataType.Field}
-          tellParent={deleteNode}
-        />
-      </div>
+      {textMode ? (
+        <div className={styles.toolbar}>
+          <Button
+            title={'Upload TOML'}
+            type={ActionType.Normal}
+            onClick={() => console.log('hi')}
+            edit={DataType.None}
+            tellParent={emptyFunction}
+          />
+        </div>
+      ) : (
+        <div className={styles.toolbar}>
+          <Button
+            title={'Add New Field'}
+            type={ActionType.Add}
+            onClick={emptyFunction}
+            edit={DataType.Field}
+            tellParent={addNode}
+          />
+          <Button
+            title={'Delete A Field'}
+            type={ActionType.Delete}
+            onClick={emptyFunction}
+            edit={DataType.Field}
+            tellParent={deleteNode}
+          />
+        </div>
+      )}
       <div className={styles.container}>
         <Container>
           <TextBox text={text} setText={setText} />

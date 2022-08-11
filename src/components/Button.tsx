@@ -17,11 +17,11 @@ const Button = ({ title, type, onClick, edit, tellParent }: ButtonProps) => {
   const [value, setValue] = React.useState('');
   const [newNode, setNewNode] = React.useState({});
 
-  if (type != ActionType.Normal) {
-    React.useEffect(() => {
+  React.useEffect(() => {
+    if (type != ActionType.Normal) {
       tellParent(newNode);
-    }, [newNode]);
-  }
+    }
+  }, [newNode]);
 
   let popup: React.ReactNode;
   if (type == ActionType.Add && edit == DataType.Field) {
