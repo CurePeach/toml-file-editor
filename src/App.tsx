@@ -33,7 +33,6 @@ function App() {
   }, [dict, textMode]);
 
   const toggleEditor = () => {
-    console.log(textMode);
     setTextMode(!textMode);
   };
 
@@ -58,8 +57,8 @@ function App() {
   };
 
   return (
-    <div>
-      <div className={styles.toolbar}>
+    <div className={styles.app}>
+      <div className={styles.status}>
         {textMode ? (
           <Button
             title={'Switch To Graphical Editor'}
@@ -77,6 +76,8 @@ function App() {
             tellParent={emptyFunction}
           />
         )}
+      </div>
+      <div className={styles.toolbar}>
         <Button
           title={'Add New Field'}
           type={ActionType.Add}
