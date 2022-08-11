@@ -1,6 +1,7 @@
 @import './colors.css';
 
 .viewer {
+  font-family: 'Consolas', 'Courier New', Courier, monospace;
   background-color: var(--ivory);
   white-space: pre-line;
   height: 100%;
