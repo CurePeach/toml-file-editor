@@ -7,7 +7,7 @@ type RowProps = {
 const Row = ({ item }: RowProps) => {
   const values: React.ReactNode[] = [];
   for (const key of Object.keys(item)) {
-    values.push(<td className={styles.row}>{String(item[key])}</td>);
+    values.push(<td key={key} className={styles.row}>{String(item[key])}</td>);
   }
   return <tr>{values}</tr>;
 };

@@ -7,7 +7,7 @@ type TitleRowProps = {
 const TitleRow = ({ keys }: TitleRowProps) => {
   const headings: React.ReactNode[] = [];
   for (const key of keys) {
-    headings.push(<th className={styles.titlerow}>{key}</th>);
+    headings.push(<th key={key} className={styles.titlerow}>{key}</th>);
   }
 
   return <tr>{headings}</tr>;
