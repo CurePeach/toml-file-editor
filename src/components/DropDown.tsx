@@ -2,7 +2,7 @@ import { solid } from '@fortawesome/fontawesome-svg-core/import.macro';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
-import styles from '../styles/dropdown.module.css';
+import styles from 'styles/dropdown.module.css';
 
 type DropdownProps = {
   title: string;

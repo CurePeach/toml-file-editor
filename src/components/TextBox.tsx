@@ -1,6 +1,6 @@
 import React, { ChangeEventHandler } from 'react';
 
-import styles from '../styles/textbox.module.css';
+import styles from 'styles/textbox.module.css';
 
 type TextBoxProps = {
   text: string;
