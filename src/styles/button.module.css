@@ -22,3 +22,12 @@
 .submit {
   display: none;
 }
+
+.break {
+  height: 1rem;
+}
+
+.textarea {
+  height: 4rem;
+  font-family: 'Consolas', 'Courier New', Courier, monospace;
+}

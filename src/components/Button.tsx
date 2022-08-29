@@ -78,6 +78,22 @@ const Button = ({ title, type, onClick, edit, tellParent }: ButtonProps) => {
         handleKeyChange={handleKeyChange}
       />
     );
+  } else if (type == ActionType.Add && edit == DataType.Array) {
+    const handleSubmit: React.FormEventHandler = (event) => {
+      event.preventDefault();
+    };
+
+    popup = (
+      <PopUp
+        type={type}
+        edit={edit}
+        handleSubmit={handleSubmit}
+        keyValue={key}
+        handleKeyChange={handleKeyChange}
+        value={value}
+        handleValueChange={handleValueChange}
+      />
+    );
   } else if (edit == DataType.Array) {
     popup = <div className={styles.popup}>Is an array</div>;
   } else if (edit == DataType.Dict) {
