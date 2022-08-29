@@ -96,6 +96,13 @@ function App() {
             edit={DataType.Field}
             tellParent={addNode}
           />
+          <Button 
+            title={'Add New Array'}
+            type={ActionType.Add}
+            onClick={emptyFunction}
+            edit={DataType.Array}
+            tellParent={emptyFunction}
+          />
           <Button
             title={'Delete A Field'}
             type={ActionType.Delete}
