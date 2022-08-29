@@ -40,7 +40,16 @@ function App() {
 
   const addNode = (node: Record<string, string>) => {
     if (!textMode) {
-      const sample = { ...dict, ...node };
+      const nodeCopy: Record<string, unknown> = {};
+      for (const [key, value] of Object.entries(node)) {
+        if (!isNaN(Number(value))) {
+          nodeCopy[key] = Number(value);
+        } else {
+          nodeCopy[key] = value;
+        }
+      }
+
+      const sample = { ...dict, ...nodeCopy };
       setDict(sample);
     }
   };
