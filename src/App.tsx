@@ -96,12 +96,12 @@ function App() {
             edit={DataType.Field}
             tellParent={addNode}
           />
-          <Button 
+          <Button
             title={'Add New Array'}
             type={ActionType.Add}
             onClick={emptyFunction}
             edit={DataType.Array}
-            tellParent={emptyFunction}
+            tellParent={addNode}
           />
           <Button
             title={'Delete A Field'}

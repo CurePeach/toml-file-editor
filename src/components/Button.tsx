@@ -81,6 +81,14 @@ const Button = ({ title, type, onClick, edit, tellParent }: ButtonProps) => {
   } else if (type == ActionType.Add && edit == DataType.Array) {
     const handleSubmit: React.FormEventHandler = (event) => {
       event.preventDefault();
+
+      const newPair: Record<string, string[]> = {};
+      newPair[key] = value.split('\n');
+      setNewNode(newPair);
+
+      setOpen(false);
+      setKey('');
+      setValue('');
     };
 
     popup = (
