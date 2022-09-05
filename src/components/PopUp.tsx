@@ -46,9 +46,7 @@ const PopUp = ({
         onChange={handleValueChange}
       />
     );
-  }
-
-  if (type == ActionType.Delete && edit == DataType.Field) {
+  } else if (type == ActionType.Delete && edit == DataType.Field) {
     formContents.push(
       <input
         key="key"
@@ -59,13 +57,47 @@ const PopUp = ({
         onChange={handleKeyChange}
       />
     );
+  } else if (type == ActionType.Add && edit == DataType.Array) {
+    formContents.push(
+      <input
+        key="key"
+        name="key"
+        placeholder="array name"
+        value={keyValue}
+        required
+        onChange={handleKeyChange}
+      />
+    );
+    formContents.push(<div className={styles.break} />);
+    formContents.push(
+      <textarea
+        key="value"
+        name="value"
+        placeholder="array contents (separate by line)"
+        value={value}
+        required
+        onChange={
+          handleValueChange as
+            | React.ChangeEventHandler<HTMLTextAreaElement>
+            | undefined
+        }
+        className={styles.textarea}
+      />
+    );
   }
 
   return (
     <div className={styles.popup}>
       <form className={styles.form} onSubmit={handleSubmit}>
         {formContents}
-        <input type="submit" className={styles.submit} />
+        {edit == DataType.Array ? (
+          <div>
+            <div className={styles.break} />
+            <input type="submit" />
+          </div>
+        ) : (
+          <input type="submit" className={styles.submit} />
+        )}
       </form>
     </div>
   );
