@@ -7,7 +7,13 @@ import Container from 'components/Container';
 import TextBox from 'components/TextBox';
 import Viewer from 'components/Viewer';
 
-import { ActionType, DataType, emptyFunction, isArray, isDict } from 'utility/types';
+import {
+  ActionType,
+  DataType,
+  emptyFunction,
+  isArray,
+  isDict,
+} from 'utility/types';
 
 import styles from 'styles/app.module.css';
 
