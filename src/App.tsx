@@ -113,6 +113,13 @@ function App() {
             tellParent={addNode}
           />
           <Button
+            title={'Add New Dict'}
+            type={ActionType.Add}
+            onClick={emptyFunction}
+            edit={DataType.Dict}
+            tellParent={addNode}
+          />
+          <Button
             title={'Delete A Field'}
             type={ActionType.Delete}
             onClick={emptyFunction}
