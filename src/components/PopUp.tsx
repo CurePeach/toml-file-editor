@@ -84,13 +84,40 @@ const PopUp = ({
         className={styles.textarea}
       />
     );
+  } else if (type == ActionType.Add && edit == DataType.Dict) {
+    formContents.push(
+      <input
+        key="key"
+        name="key"
+        placeholder="dict name"
+        value={keyValue}
+        required
+        onChange={handleKeyChange}
+      />
+    );
+    formContents.push(<div key="break" className={styles.break} />);
+    formContents.push(
+      <textarea
+        key="value"
+        name="value"
+        placeholder="{key} : {value} (separate by line)"
+        value={value}
+        required
+        onChange={
+          handleValueChange as
+            | React.ChangeEventHandler<HTMLTextAreaElement>
+            | undefined
+        }
+        className={styles.textarea}
+      />
+    );
   }
 
   return (
     <div className={styles.popup}>
       <form className={styles.form} onSubmit={handleSubmit}>
         {formContents}
-        {edit == DataType.Array ? (
+        {edit == DataType.Array || edit == DataType.Dict ? (
           <div>
             <div className={styles.break} />
             <input type="submit" />

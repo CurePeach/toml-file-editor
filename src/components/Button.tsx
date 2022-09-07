@@ -102,6 +102,44 @@ const Button = ({ title, type, onClick, edit, tellParent }: ButtonProps) => {
         handleValueChange={handleValueChange}
       />
     );
+  } else if (type == ActionType.Add && edit == DataType.Dict) {
+    const handleSubmit: React.FormEventHandler = (event) => {
+      event.preventDefault();
+
+      const rawKeyValuePairs: string[] = value.split('\n');
+      const rawKeys: string[] = [];
+      const rawValues: string[] = [];
+      for (const pair of rawKeyValuePairs) {
+        const [rawKey, ...rest] = pair.split(':');
+        rawKeys.push(rawKey.trim());
+        rawValues.push(rest.join(':').trim());
+      }
+
+      const newRecord: Record<string, string> = {};
+      rawKeys.forEach((rawKey, index) => {
+        newRecord[rawKey] = rawValues[index];
+      });
+
+      const newPair: Record<string, Record<string, string>> = {};
+      newPair[key] = newRecord;
+      setNewNode(newPair);
+
+      setOpen(false);
+      setKey('');
+      setValue('');
+    };
+
+    popup = (
+      <PopUp
+        type={type}
+        edit={edit}
+        handleSubmit={handleSubmit}
+        keyValue={key}
+        handleKeyChange={handleKeyChange}
+        value={value}
+        handleValueChange={handleValueChange}
+      />
+    );
   } else if (edit == DataType.Array) {
     popup = <div className={styles.popup}>Is an array</div>;
   } else if (edit == DataType.Dict) {

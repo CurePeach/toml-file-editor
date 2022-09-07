@@ -7,7 +7,7 @@ import Container from 'components/Container';
 import TextBox from 'components/TextBox';
 import Viewer from 'components/Viewer';
 
-import { ActionType, DataType, emptyFunction, isArray } from 'utility/types';
+import { ActionType, DataType, emptyFunction, isArray, isDict } from 'utility/types';
 
 import styles from 'styles/app.module.css';
 
@@ -53,6 +53,17 @@ function App() {
           }
 
           nodeCopy[key] = arrayCopy;
+        } else if (isDict(value)) {
+          const dictCopy: Record<string, unknown> = {};
+          for (const [innerKey, innerValue] of Object.entries(value)) {
+            if (!isNaN(Number(innerValue))) {
+              dictCopy[innerKey] = Number(innerValue);
+            } else {
+              dictCopy[innerKey] = innerValue;
+            }
+          }
+
+          nodeCopy[key] = dictCopy;
         } else if (!isNaN(Number(value))) {
           nodeCopy[key] = Number(value);
         } else {
@@ -121,6 +132,13 @@ function App() {
             type={ActionType.Add}
             onClick={emptyFunction}
             edit={DataType.Array}
+            tellParent={addNode}
+          />
+          <Button
+            title={'Add New Dict'}
+            type={ActionType.Add}
+            onClick={emptyFunction}
+            edit={DataType.Dict}
             tellParent={addNode}
           />
           <Button
