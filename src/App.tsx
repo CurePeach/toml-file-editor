@@ -46,7 +46,7 @@ function App() {
           const arrayCopy: unknown[] = [];
           for (const item of value) {
             if (!isNaN(Number(item))) {
-              arrayCopy.push(Number(item))
+              arrayCopy.push(Number(item));
             } else {
               arrayCopy.push(item);
             }
