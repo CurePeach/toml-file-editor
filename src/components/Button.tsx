@@ -110,9 +110,9 @@ const Button = ({ title, type, onClick, edit, tellParent }: ButtonProps) => {
       const rawKeys: string[] = [];
       const rawValues: string[] = [];
       for (const pair of rawKeyValuePairs) {
-        const [rawKey, rawValue] = pair.split(':');
+        const [rawKey, ...rest] = pair.split(':');
         rawKeys.push(rawKey.trim());
-        rawValues.push(rawValue.trim());
+        rawValues.push(rest.join(':').trim());
       }
 
       const newRecord: Record<string, string> = {};
