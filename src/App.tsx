@@ -7,7 +7,7 @@ import Container from 'components/Container';
 import TextBox from 'components/TextBox';
 import Viewer from 'components/Viewer';
 
-import { ActionType, DataType, emptyFunction, isDict } from 'utility/types';
+import { ActionType, DataType, emptyFunction, isArray, isDict } from 'utility/types';
 
 import styles from 'styles/app.module.css';
 
@@ -42,7 +42,18 @@ function App() {
     if (!textMode) {
       const nodeCopy: Record<string, unknown> = {};
       for (const [key, value] of Object.entries(node)) {
-        if (isDict(value)) {
+        if (isArray(value)) {
+          const arrayCopy: unknown[] = [];
+          for (const item of value) {
+            if (!isNaN(Number(item))) {
+              arrayCopy.push(Number(item));
+            } else {
+              arrayCopy.push(item);
+            }
+          }
+
+          nodeCopy[key] = arrayCopy;
+        } else if (isDict(value)) {
           const dictCopy: Record<string, unknown> = {};
           for (const [innerKey, innerValue] of Object.entries(value)) {
             if (!isNaN(Number(innerValue))) {
