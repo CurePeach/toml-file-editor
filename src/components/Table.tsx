@@ -50,7 +50,9 @@ const Table = ({ name, contents }: TableProps) => {
   return (
     <div>
       <Title title={name} />
-      <table className={styles.table}>{rows}</table>
+      <table className={styles.table}>
+        <tbody>{rows}</tbody>
+      </table>
     </div>
   );
 };
