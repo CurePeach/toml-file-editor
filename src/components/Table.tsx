@@ -26,7 +26,11 @@ const Table = ({ name, contents }: TableProps) => {
     } else if (isArray(item)) {
       const thisRow: React.ReactNode[] = [];
       for (const col of item) {
-        thisRow.push(<td className={styles.row}>{String(col)}</td>);
+        thisRow.push(
+          <td key={String(col)} className={styles.row}>
+            {String(col)}
+          </td>
+        );
       }
       rows.push(<tr key={count}>{thisRow}</tr>);
     } else {
@@ -40,13 +44,15 @@ const Table = ({ name, contents }: TableProps) => {
   }
 
   if (titleRowRequired) {
-    rows.unshift(<TitleRow keys={Array.from(keys)} />);
+    rows.unshift(<TitleRow key={'title'} keys={Array.from(keys)} />);
   }
 
   return (
     <div>
       <Title title={name} />
-      <table className={styles.table}>{rows}</table>
+      <table className={styles.table}>
+        <tbody>{rows}</tbody>
+      </table>
     </div>
   );
 };
