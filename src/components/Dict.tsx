@@ -12,7 +12,7 @@ type DictProps = {
 };
 
 const Dict = ({ name, contents }: DictProps) => {
-  const nodes: React.ReactNode[] = [<Title title={name} />];
+  const nodes: React.ReactNode[] = [<Title key={name} title={name} />];
 
   for (const [key, value] of Object.entries(contents)) {
     if (isArray(value)) {
