@@ -22,7 +22,6 @@ const Table = ({ name, contents }: TableProps) => {
       for (const key of Object.keys(item)) {
         keys.add(key);
       }
-      rows.push(<Row key={count} item={item} />);
     } else if (isArray(item)) {
       const thisRow: React.ReactNode[] = [];
       for (const col of item) {
@@ -45,6 +44,16 @@ const Table = ({ name, contents }: TableProps) => {
 
   if (titleRowRequired) {
     rows.unshift(<TitleRow key={'title'} keys={Array.from(keys)} />);
+    
+    count = 0;
+    for (const item of contents) {
+      if (isDict(item)) {
+        rows.push(<Row key={count} item={item} keys={Array.from(keys)} />);
+      }
+
+      count += 1;
+    }
+
   }
 
   return (
