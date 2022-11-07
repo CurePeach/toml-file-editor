@@ -1,10 +1,42 @@
-import Row from 'components/Row';
 import Title from 'components/Title';
 import TitleRow from 'components/TitleRow';
 
 import { isArray, isDict } from 'utility/types';
 
 import styles from 'styles/table.module.css';
+
+type RowProps = {
+  item: Record<string, unknown>;
+  keys: string[];
+};
+
+const Row = ({ item, keys }: RowProps) => {
+  const values: React.ReactNode[] = [];
+  for (const key of keys) {
+    if (key in item) {
+      const contents = item[key]
+      if (isArray(contents)) {
+        values.push(
+          <td key={key} className={styles.row}>
+            <Table name={key} contents={contents}/>
+          </td>
+        );
+      } else {
+        values.push(
+          <td key={key} className={styles.row}>
+            {String(contents)}
+          </td>
+        );
+      }
+    } else {
+      values.push(
+        <td key={key} className={styles.row} />
+      );
+    }
+    
+  }
+  return <tr>{values}</tr>;
+};
 
 type TableProps = {
   name: string;
