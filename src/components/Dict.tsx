@@ -18,7 +18,7 @@ const Dict = ({ name, contents }: DictProps) => {
     if (isArray(value)) {
       nodes.push(
         <div key={key} className={styles.child}>
-          <Table name={key} contents={value} titleRequired={true}/>
+          <Table name={key} contents={value} titleRequired={true} />
         </div>
       );
     } else if (isDict(value)) {

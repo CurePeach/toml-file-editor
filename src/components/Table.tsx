@@ -14,11 +14,11 @@ const Row = ({ item, keys }: RowProps) => {
   const values: React.ReactNode[] = [];
   for (const key of keys) {
     if (key in item) {
-      const contents = item[key]
+      const contents = item[key];
       if (isArray(contents)) {
         values.push(
           <td key={key} className={styles.row}>
-            <Table name={key} contents={contents} titleRequired={false}/>
+            <Table name={key} contents={contents} titleRequired={false} />
           </td>
         );
       } else {
@@ -29,11 +29,8 @@ const Row = ({ item, keys }: RowProps) => {
         );
       }
     } else {
-      values.push(
-        <td key={key} className={styles.row} />
-      );
+      values.push(<td key={key} className={styles.row} />);
     }
-    
   }
   return <tr>{values}</tr>;
 };
@@ -77,7 +74,7 @@ const Table = ({ name, contents, titleRequired }: TableProps) => {
 
   if (titleRowRequired) {
     rows.unshift(<TitleRow key={'title'} keys={Array.from(keys)} />);
-    
+
     count = 0;
     for (const item of contents) {
       if (isDict(item)) {
@@ -86,7 +83,6 @@ const Table = ({ name, contents, titleRequired }: TableProps) => {
 
       count += 1;
     }
-
   }
 
   return (

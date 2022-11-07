@@ -25,7 +25,9 @@ const Viewer = ({ dict, setDict, error }: ViewerProps) => {
   for (const key of Object.keys(dict)) {
     const value = dict[key];
     if (isArray(value)) {
-      nodes.push(<Table key={key} name={key} contents={value} titleRequired={true}/>);
+      nodes.push(
+        <Table key={key} name={key} contents={value} titleRequired={true} />
+      );
     } else if (isDict(value)) {
       nodes.push(<Dict key={key} name={key} contents={value} />);
     } else {
