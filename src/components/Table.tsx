@@ -18,7 +18,7 @@ const Row = ({ item, keys }: RowProps) => {
       if (isArray(contents)) {
         values.push(
           <td key={key} className={styles.row}>
-            <Table name={key} contents={contents}/>
+            <Table name={key} contents={contents} titleRequired={false}/>
           </td>
         );
       } else {
@@ -41,9 +41,10 @@ const Row = ({ item, keys }: RowProps) => {
 type TableProps = {
   name: string;
   contents: unknown[];
+  titleRequired: boolean;
 };
 
-const Table = ({ name, contents }: TableProps) => {
+const Table = ({ name, contents, titleRequired }: TableProps) => {
   const rows: React.ReactNode[] = [];
   let count = 0;
   let titleRowRequired = false;
@@ -90,7 +91,7 @@ const Table = ({ name, contents }: TableProps) => {
 
   return (
     <div>
-      <Title title={name} />
+      {titleRequired && <Title title={name} />}
       <table className={styles.table}>
         <tbody>{rows}</tbody>
       </table>
