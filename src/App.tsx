@@ -112,19 +112,7 @@ function App() {
           />
         )}
       </div>
-      {textMode ? (
-        <div className={styles.toolbar}>
-          <Button
-            title={'Upload TOML'}
-            type={ActionType.Normal}
-            onClick={() => {
-              alert('Not implemented yet :(');
-            }}
-            edit={DataType.None}
-            tellParent={emptyFunction}
-          />
-        </div>
-      ) : (
+      {!textMode && (
         <div className={styles.toolbar}>
           <Button
             title={'Add New Field'}
